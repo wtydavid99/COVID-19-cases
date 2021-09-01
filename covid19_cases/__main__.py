@@ -1,67 +1,53 @@
-# type: ignore[attr-defined]
-from typing import Optional
+import os
+import time
+import traceback
 
-from enum import Enum
-from random import choice
+import click
+from selenium import webdriver
 
-import typer
-from rich.console import Console
+from covid19_cases.helperfunc import *
 
-from covid19_cases import version
-from covid19_cases.example import hello
-
-
-class Color(str, Enum):
-    white = "white"
-    red = "red"
-    cyan = "cyan"
-    magenta = "magenta"
-    yellow = "yellow"
-    green = "green"
+URL = "https://www.worldometers.info/coronavirus/?"
 
 
-app = typer.Typer(
-    name="covid19_cases",
-    help="Awesome `covid19_cases` is a Python cli/package created with https://github.com/TezRomacH/python-package-template",
-    add_completion=False,
+@click.command()
+@click.option(
+    "-w",
+    "--webdriver_path",
+    prompt="Enter path of webdriver",
+    help="Path of webdriver used to load URL.",
+    required=True,
+    default=os.path.join(os.getcwd(), "chromedriver.exe"),
 )
-console = Console()
+@click.option(
+    "-l",
+    "--location",
+    prompt="Enter target location",
+    help="Target location to get COVID-19 cases report",
+    required=True,
+    default="Hong Kong",
+)
+@click.option(
+    "-d",
+    "--dir",
+    "dir",
+    prompt="Enter save directory path",
+    help="Directory to save output data.",
+    required=False,
+    default=os.getcwd(),
+)
+def start_scraping(webdriver_path, location, dir):
+    with webdriver.Chrome(webdriver_path) as wd:
+        wd.get(URL)
+        try:
+            df = get_cases_tdy_by_loc(wd, location)
+            exported_path = export(df, location, dir)
 
-
-def version_callback(print_version: bool) -> None:
-    """Print the version of the package."""
-    if print_version:
-        console.print(f"[yellow]covid19_cases[/] version: [bold blue]{version}[/]")
-        raise typer.Exit()
-
-
-@app.command(name="")
-def main(
-    name: str = typer.Option(..., help="Person to greet."),
-    color: Optional[Color] = typer.Option(
-        None,
-        "-c",
-        "--color",
-        "--colour",
-        case_sensitive=False,
-        help="Color for print. If not specified then choice will be random.",
-    ),
-    print_version: bool = typer.Option(
-        None,
-        "-v",
-        "--version",
-        callback=version_callback,
-        is_eager=True,
-        help="Prints the version of the covid19_cases package.",
-    ),
-) -> None:
-    """Print a greeting with a giving name."""
-    if color is None:
-        color = choice(list(Color))
-
-    greeting: str = hello(name)
-    console.print(f"[bold {color}]{greeting}[/]")
+        except:
+            traceback.print_exc()
 
 
 if __name__ == "__main__":
-    app()
+    start_time = time.time()
+    start_scraping()
+    print("--- %s seconds ---" % (time.time() - start_time))
