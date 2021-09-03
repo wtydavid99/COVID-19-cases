@@ -41,7 +41,5 @@ jobs:
       - name: Collect data
         run: |
           poetry run python -m covid19_cases.hk_database \
-          -w "chromedriver.exe"\
-          -l "Hong Kong"\
-          -d . \
+
           
