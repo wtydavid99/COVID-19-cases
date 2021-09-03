@@ -3,7 +3,7 @@ import unittest
 
 from selenium import webdriver
 
-from covid19_cases.helperfunc import *
+from covid19_cases.hk_database.helperfunc import *
 
 
 class Covid_19_query(unittest.TestCase):
