@@ -14,26 +14,20 @@ URL = "https://www.worldometers.info/coronavirus/?"
 @click.option(
     "-w",
     "--webdriver_path",
-    prompt="Enter path of webdriver",
     help="Path of webdriver used to load URL.",
-    required=True,
     default=os.path.join(os.getcwd(), "chromedriver.exe"),
 )
 @click.option(
     "-l",
     "--location",
-    prompt="Enter target location",
     help="Target location to get COVID-19 cases report",
-    required=True,
     default="Hong Kong",
 )
 @click.option(
     "-d",
     "--dir",
     "dir",
-    prompt="Enter save directory path",
     help="Directory to save output data.",
-    required=False,
     default=os.getcwd(),
 )
 def start_scraping(webdriver_path, location, dir):
