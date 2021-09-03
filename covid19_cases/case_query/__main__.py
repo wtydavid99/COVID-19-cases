@@ -5,7 +5,7 @@ import traceback
 import click
 from selenium import webdriver
 
-from covid19_cases.helperfunc import *
+from covid19_cases.case_query.helperfunc import *
 
 URL = "https://www.worldometers.info/coronavirus/?"
 
