@@ -153,7 +153,7 @@ python-versions = ">=3.6,<4.0"
 
 [[package]]
 name = "datetime"
-version = "4.3"
+version = "4.4"
 description = "This package provides a DateTime data type, as known from Zope. Unless you need to communicate with Zope APIs, you're probably better off using Python's built-in datetime module."
 category = "main"
 optional = false
@@ -765,7 +765,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ec37f6427c0cbcf1388344d766f55b1f908d10070395fb8a6809f725517ef704"
+content-hash = "cdcc040c76eb093d58b1586f5ec63aed3de04441b07d69be09922bd5383fc92d"
 
 [metadata.files]
 astroid = [
@@ -821,8 +821,8 @@ darglint = [
     {file = "darglint-1.8.0.tar.gz", hash = "sha256:aa605ef47817a6d14797d32b390466edab621768ea4ca5cc0f3c54f6d8dcaec8"},
 ]
 datetime = [
-    {file = "DateTime-4.3-py2.py3-none-any.whl", hash = "sha256:371dba07417b929a4fa685c2f7a3eaa6a62d60c02947831f97d4df9a9e70dfd0"},
-    {file = "DateTime-4.3.tar.gz", hash = "sha256:5cef605bab8259ff61281762cdf3290e459fbf0b4719951d5fab967d5f2ea0ea"},
+    {file = "DateTime-4.4-py2.py3-none-any.whl", hash = "sha256:4fcca115ddb466a1104df08d5c2a2f5805d14ca317800e1bfcea8f3d69f66e57"},
+    {file = "DateTime-4.4.tar.gz", hash = "sha256:074b0c63d4328f4de30662786fa436a0567145b2ab02f47be5af68f58afc03ec"},
 ]
 distlib = [
     {file = "distlib-0.3.2-py2.py3-none-any.whl", hash = "sha256:23e223426b28491b1ced97dc3bbe183027419dfc7982b4fa2f05d5f3ff10711c"},
